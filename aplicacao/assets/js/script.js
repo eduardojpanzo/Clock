@@ -5,7 +5,7 @@ let mil = document.querySelector('.tempo .mil');
 
 let timer,c=0,i=0,j=0,naoCount = true;
 
-function count(){
+document.querySelector('.start').addEventListener('click',()=>{
 	if (naoCount) {
 		naoCount = false;
 		timer = setInterval(()=>{
@@ -25,9 +25,9 @@ function count(){
 	} else{
 		alert("Ja esta a Contar");
 	}
-}
+});
 
-function stop(){
+document.querySelector('.stop').addEventListener('click',()=>{
 	if (!naoCount) {
 		naoCount = true;
 		clearInterval(timer);
@@ -38,18 +38,19 @@ function stop(){
 	}else{
 		alert("Ja esta em Pausa");
 	}
-}
-function again(){
-		clearInterval(timer);
-		mil.innerText = "-";
-		sec.innerText = "-";
-		min.innerText = "-";
-		naoCount = true;
-		c=0;
-		i=0;
-		j=0;
-		setTimeout(()=>{
-			btnStart.classList.remove('cont');
-			btnStart.innerText = "Iniciar";
-		},200);
-}
+});
+
+document.querySelector('.begin').addEventListener('click',()=>{
+    clearInterval(timer);
+    mil.innerText = "-";
+    sec.innerText = "-";
+    min.innerText = "-";
+    naoCount = true;
+    c=0;
+    i=0;
+    j=0;
+    setTimeout(()=>{
+        btnStart.classList.remove('cont');
+        btnStart.innerText = "Iniciar";
+    },200);
+});
