@@ -31,7 +31,6 @@
   filter: brightness(0.8);
 }
 
-.timer .item.begin {
-  border: 1px solid #000;
-  color: #000;
+.timer .btn.resume {
+  background-color: orange;
 }

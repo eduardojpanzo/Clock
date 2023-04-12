@@ -11,7 +11,7 @@ const timerElements = `
 
 <div class="btns">
     <button class="btn bg-green start" onclick="handleStartCount()">Iniciar</button>
-    <button class="btn bg-orange stop" onclick="handlePauseCount()">Pausar</button>
+    <button class="btn bg-red stop" onclick="handlePauseCount()">Pausar</button>
     <button class="btn bg-black begin" onclick="handleStopCount()">Zerar</button>
 </div>
 </di>
@@ -20,31 +20,28 @@ const timerElements = `
 document.querySelector("#app .container").innerHTML = timerElements;
 
 let btnStart = document.querySelector(".item.start");
-let min = document.querySelector(".tempo .min");
-let sec = document.querySelector(".tempo .sec");
-let mil = document.querySelector(".tempo .mil");
 
 let timer,
-  c = 0,
-  i = 0,
-  j = 0,
-  naoCount = true;
+  milliseconds = 0,
+  seconds = 0,
+  minute = 0,
+  notAccount = true;
 
 function handleStartCount() {
-  if (naoCount) {
-    naoCount = false;
+  if (notAccount) {
+    notAccount = false;
     timer = setInterval(() => {
-      c += 10;
-      mil.innerText = c;
-      if (c == 1000) {
-        i++;
-        sec.innerText = i;
-        if (i == 60) {
-          j++;
-          min.innerText = j;
-          i = 0;
+      milliseconds += 10;
+      setMilliSecondsValue(milliseconds);
+      if (milliseconds === 1000) {
+        seconds++;
+        setSecondsValue(seconds);
+        if (seconds === 60) {
+          minute++;
+          setMinuteValue(minute);
+          seconds = 0;
         }
-        c = 0;
+        milliseconds = 0;
       }
     }, 10);
   } else {
@@ -53,12 +50,12 @@ function handleStartCount() {
 }
 
 function handlePauseCount() {
-  if (!naoCount) {
-    naoCount = true;
+  if (!notAccount) {
+    notAccount = true;
     clearInterval(timer);
     setTimeout(() => {
-      btnStart.classList.add("cont");
-      btnStart.innerText = "Continuar";
+      document.querySelector(".btn.start").classList.add("resume");
+      document.querySelector(".btn.start").innerText = "Continuar";
     }, 200);
   } else {
     alert("Ja esta em Pausa");
@@ -70,12 +67,27 @@ function handleStopCount() {
   mil.innerText = "-";
   sec.innerText = "-";
   min.innerText = "-";
-  naoCount = true;
-  c = 0;
-  i = 0;
-  j = 0;
+  notAccount = true;
+  milliseconds = 0;
+  seconds = 0;
+  minute = 0;
   setTimeout(() => {
-    btnStart.classList.remove("cont");
-    btnStart.innerText = "Iniciar";
+    document.querySelector(".btn.start").classList.remove("resume");
+    document.querySelector(".btn.start").innerText = "Iniciar";
   }, 200);
 }
+
+function setHoursValue(value) {
+  document.querySelector("#timer .time .hr").innerHTML = value;
+}
+function setMinuteValue(value) {
+  document.querySelector("#timer .time .min").innerHTML = value;
+}
+function setSecondsValue(value) {
+  document.querySelector("#timer .time .sec").innerHTML = value;
+}
+function setMilliSecondsValue(value) {
+  document.querySelector("#timer .time .mil").innerHTML = value;
+}
+
+function handle(params) {}
