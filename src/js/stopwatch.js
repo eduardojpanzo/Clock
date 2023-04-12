@@ -1,5 +1,5 @@
-const timerElements = `
-<div id="timer" class="timer">
+const stopwatchElements = `
+<div id="stopwatch" class="stopwatch">
 <h1>Cronómetro</h1>
 
 <div class="time">
@@ -17,11 +17,9 @@ const timerElements = `
 </di>
 `;
 
-document.querySelector("#app .container").innerHTML = timerElements;
+document.querySelector("#app .container").innerHTML = stopwatchElements;
 
-let btnStart = document.querySelector(".item.start");
-
-let timer,
+let stopwatchInterval,
   milliseconds = 0,
   seconds = 0,
   minute = 0,
@@ -30,7 +28,7 @@ let timer,
 function handleStartCount() {
   if (notAccount) {
     notAccount = false;
-    timer = setInterval(() => {
+    stopwatchInterval = setInterval(() => {
       milliseconds += 10;
       setMilliSecondsValue(milliseconds);
       if (milliseconds === 1000) {
@@ -52,7 +50,7 @@ function handleStartCount() {
 function handlePauseCount() {
   if (!notAccount) {
     notAccount = true;
-    clearInterval(timer);
+    clearInterval(stopwatchInterval);
     setTimeout(() => {
       document.querySelector(".btn.start").classList.add("resume");
       document.querySelector(".btn.start").innerText = "Continuar";
@@ -63,7 +61,7 @@ function handlePauseCount() {
 }
 
 function handleStopCount() {
-  clearInterval(timer);
+  clearInterval(stopwatchInterval);
   mil.innerText = "-";
   sec.innerText = "-";
   min.innerText = "-";
@@ -89,5 +87,3 @@ function setSecondsValue(value) {
 function setMilliSecondsValue(value) {
   document.querySelector("#timer .time .mil").innerHTML = value;
 }
-
-function handle(params) {}

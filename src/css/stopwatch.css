@@ -1,20 +1,20 @@
-.timer h1 {
+.stopwatch h1 {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
-.timer .time {
+.stopwatch .time {
   font-size: 1.5rem;
 }
-.timer .time span {
+.stopwatch .time span {
   display: inline-block;
   width: 4rem;
 }
-.timer div.btns {
+.stopwatch div.btns {
   padding: 20px 0;
   display: flex;
 }
-.timer .btn {
+.stopwatch .btn {
   flex: 1;
   margin: 0.325rem 0.65rem;
   padding: 0.62rem;
@@ -27,10 +27,10 @@
   transition: all ease 0.5;
 }
 
-.timer .btn:hover {
+.stopwatch .btn:hover {
   filter: brightness(0.8);
 }
 
-.timer .btn.resume {
+.stopwatch .btn.resume {
   background-color: orange;
 }
