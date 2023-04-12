@@ -1,0 +1,37 @@
+.timer h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.timer .time {
+  font-size: 1.5rem;
+}
+.timer .time span {
+  display: inline-block;
+  width: 4rem;
+}
+.timer div.btns {
+  padding: 20px 0;
+  display: flex;
+}
+.timer .btn {
+  flex: 1;
+  margin: 0.325rem 0.65rem;
+  padding: 0.62rem;
+  border-radius: 0.62rem;
+  border: none;
+  text-align: center;
+  font-size: 1.2em;
+  color: #fff;
+  cursor: pointer;
+  transition: all ease 0.5;
+}
+
+.timer .btn:hover {
+  filter: brightness(0.8);
+}
+
+.timer .item.begin {
+  border: 1px solid #000;
+  color: #000;
+}
