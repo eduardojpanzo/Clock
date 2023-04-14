@@ -23,24 +23,20 @@ let stopwatchInterval,
   milliseconds = 0,
   seconds = 0,
   minute = 0,
+  hour = 0,
   notAccount = true;
 
 function handleStartCount() {
   if (notAccount) {
     notAccount = false;
     stopwatchInterval = setInterval(() => {
-      milliseconds += 10;
-      setMilliSecondsValue(milliseconds);
-      if (milliseconds === 1000) {
-        seconds++;
-        setSecondsValue(seconds);
-        if (seconds === 60) {
-          minute++;
-          setMinuteValue(minute);
-          seconds = 0;
-        }
-        milliseconds = 0;
-      }
+      setMilliSecondsValue();
+
+      setSecondsValue();
+
+      setMinuteValue();
+
+      setHoursValue();
     }, 10);
   } else {
     alert("Ja esta a Contar");
@@ -75,15 +71,32 @@ function handleStopCount() {
   }, 200);
 }
 
-function setHoursValue(value) {
-  document.querySelector("#timer .time .hr").innerHTML = value;
+function setHoursValue() {
+  if (minute === 60) {
+    hour++;
+    minute = 0;
+    document.querySelector("#stopwatch .time .hr").innerHTML = hour;
+  }
 }
-function setMinuteValue(value) {
-  document.querySelector("#timer .time .min").innerHTML = value;
+
+function setMinuteValue() {
+  if (seconds === 60) {
+    minute++;
+    seconds = 0;
+    document.querySelector("#stopwatch .time .min").innerHTML = minute;
+  }
 }
-function setSecondsValue(value) {
-  document.querySelector("#timer .time .sec").innerHTML = value;
+
+function setSecondsValue() {
+  if (milliseconds === 1000) {
+    seconds++;
+    milliseconds = 0;
+    document.querySelector("#stopwatch .time .sec").innerHTML =
+      seconds === 60 ? "00" : seconds < 10 ? `0` + seconds : seconds;
+  }
 }
-function setMilliSecondsValue(value) {
-  document.querySelector("#timer .time .mil").innerHTML = value;
+
+function setMilliSecondsValue() {
+  milliseconds += 10;
+  document.querySelector("#stopwatch .time .mil").innerHTML = milliseconds / 10;
 }
